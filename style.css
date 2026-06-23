@@ -1,0 +1,527 @@
+@font-face {
+  font-family: 'Iansui'; /* 自己為字型取的名字 */
+  src: url('Iansui.woff2') format('woff2'); /* 指向你的字型檔案路徑 */
+  font-display: swap;
+}
+
+:root {
+  --bg-color: #030611; 
+  --accent-color: #00d2ff;
+  --color-purple: #7928ca;
+  --color-pink: #ff0080;
+  
+  --text-main: #ffffff; /* 純白對比度最高 (> 18:1) */
+  /* 🌟 [更新] 將次要文字從 #8fa0dd 提亮，確保對深色背景的對比度達到 4.5:1 以上 */
+  --text-muted: #c4d1ff; 
+
+  --space-gradient: linear-gradient(135deg, #0d1b3e 0%, #1a0b36 50%, var(--bg-color) 100%);
+  --liquid-gradient: linear-gradient(135deg, var(--accent-color) 0%, var(--color-purple) 50%, var(--color-pink) 100%);
+  --text-gradient: linear-gradient(45deg, var(--text-main), var(--accent-color));
+
+  /* 🌟 [更新] 提高玻璃擬態的透明度參數，讓卡片邊緣的視覺對比更明確 */
+  --glass-bg-base: rgba(255, 255, 255, 0.04); /* 原 0.02 */
+  --glass-bg-hover: rgba(255, 255, 255, 0.06); /* 原 0.04 */
+  --glass-bg-light: rgba(255, 255, 255, 0.08); /* 原 0.05 */
+  --glass-bg-dark: rgba(0, 0, 0, 0.3); /* 加深底圖區塊，凸顯主體 */
+  
+  /* 🌟 [更新] 加強卡片邊框亮度 */
+  --border-glass-base: rgba(255, 255, 255, 0.12); /* 原 0.05 */
+  --border-glass-light: rgba(255, 255, 255, 0.15); /* 原 0.1 */
+  --border-accent-hover: rgba(0, 210, 255, 0.5);
+  --border-accent-strong: rgba(0, 210, 255, 0.6);
+
+  /* 發光與陰影 */
+  --shadow-dark: rgba(0, 0, 0, 0.6);
+  --shadow-dark-md: rgba(0, 0, 0, 0.5);
+  --glow-accent-sm: rgba(0, 210, 255, 0.15);
+  --glow-accent-md: rgba(0, 210, 255, 0.2);
+  --glow-accent-lg: rgba(0, 210, 255, 0.6);
+  --glow-accent-xl: rgba(0, 210, 255, 0.8);
+  --glow-purple: rgba(121, 40, 202, 0.4);
+
+  /* =========================================
+     🖋️ 字體與排版 (Typography)
+     ========================================= */
+  --font-main: 'Iansui', "Segoe UI", sans-serif;
+  
+  /* 字級 (由小到大) */
+  --text-xs: 0.65rem;
+  --text-sm: 0.95rem;
+  --text-base: 1.1rem;
+  --text-lg: 1.15rem;
+  --text-xl: 1.3rem;
+  --text-2xl: 2rem;
+  --text-3xl: 2.8rem;
+
+  /* 字距與行高 */
+  --tracking-wide: 1px;
+  --tracking-wider: 2px;
+  --leading-base: 1.6;
+  --leading-lg: 1.8;
+
+  /* =========================================
+     📐 佈局與間距 (Layout & Spacing)
+     ========================================= */
+  --container-width: 1100px;
+  
+  /* Padding & Margin */
+  --space-xs: 5px;
+  --space-sm: 10px;
+  --space-md: 15px;
+  --space-lg: 20px;
+  --space-xl: 30px;
+  --space-2xl: 40px;
+  --space-3xl: 60px;
+  --space-4xl: 80px;
+
+  /* Grid Gaps */
+  --gap-sm: 10px;
+  --gap-md: 20px;
+  --gap-lg: 30px;
+
+  /* =========================================
+     🔲 圓角 (Border Radius)
+     ========================================= */
+  --radius-sm: 8px;
+  --radius-md: 12px;
+  --radius-lg: 16px;
+  --radius-xl: 20px;
+  --radius-full: 50%;
+
+  /* =========================================
+     ⏱️ 動畫與過渡 (Transitions)
+     ========================================= */
+  --transition-fast: 0.2s;
+  --transition-base: 0.3s;
+  --transition-slow: 0.4s;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background-color: var(--bg-color);
+  background-image: var(--space-gradient);
+  background-attachment: fixed;
+  color: var(--text-main);
+  min-height: 100vh;
+  font-family: var(--font-main);
+  overflow-x: hidden;
+  scrollbar-gutter: stable;
+}
+body.no-scroll {
+  overflow: hidden;
+}
+h2 {
+  font-size: var(--text-2xl);
+  text-align: center;
+  margin-bottom: var(--space-xl);
+  letter-spacing: var(--tracking-wider);
+  background: var(--text-gradient);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+/* --- 核心：開場 Gooey 容器 --- */
+.intro-container {
+  position: fixed;
+  inset: 0;
+  background: var(--bg-color);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 999;
+  filter: url('#smooth-gooey'); 
+  will-change: transform, opacity;
+  transform: translateZ(0);
+  mix-blend-mode: screen;
+  animation: fadeOutContainer 0.5s ease forwards 3.2s;
+}
+
+/* --- 水滴樣式（星空極光色調） --- */
+.drop {
+  position: absolute;
+  background: var(--liquid-gradient);
+  border-radius: var(--radius-full);
+  will-change: transform, opacity;
+  transform: translateZ(0); 
+  box-shadow: 
+    inset 2px 4px 10px rgba(255, 255, 255, 0.4),  
+    inset -3px -6px 10px var(--shadow-dark),    
+    0 0 30px var(--glow-purple);            
+}
+
+.main-drop {
+  width: 95px;
+  height: 95px;
+  /* 註：開場動畫高度特定的 keyframe 秒數保留硬編碼，避免變數過於零散 */
+  animation: 
+    mainSwell 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards 1.2s,
+    mainExplode 1.2s cubic-bezier(0.1, 0.8, 0.1, 1) forwards 1.8s;
+  z-index: 999;
+}
+
+.sub-drop { opacity: 0.95; }
+
+.drop-1 { width: 45px; height: 45px; top: 20%; left: 20%; animation: merge-1 1.5s cubic-bezier(0.6, -0.28, 0.735, 0.045) forwards; }
+.drop-2 { width: 38px; height: 38px; top: 15%; right: 25%; animation: merge-2 1.4s cubic-bezier(0.6, -0.28, 0.735, 0.045) forwards 0.1s; }
+.drop-3 { width: 48px; height: 48px; bottom: 20%; left: 30%; animation: merge-3 1.3s cubic-bezier(0.6, -0.28, 0.735, 0.045) forwards 0.2s; }
+.drop-4 { width: 42px; height: 42px; bottom: 25%; right: 20%; animation: merge-4 1.5s cubic-bezier(0.6, -0.28, 0.735, 0.045) forwards 0.05s; }
+
+@keyframes merge-1 {
+  0% { transform: translate(0, 0) scale(1) translateZ(0); }
+  80% { transform: translate(calc(50vw - 20vw - 45px), calc(50vh - 20vh - 45px)) scale(1.1) translateZ(0); }
+  100% { transform: translate(calc(50vw - 20vw - 45px), calc(50vh - 20vh - 45px)) scale(0) translateZ(0); }
+}
+@keyframes merge-2 {
+  0% { transform: translate(0, 0) scale(1) translateZ(0); }
+  80% { transform: translate(calc(-50vw + 25vw + 45px), calc(50vh - 15vh - 45px)) scale(1.2) translateZ(0); }
+  100% { transform: translate(calc(-50vw + 25vw + 45px), calc(50vh - 15vh - 45px)) scale(0) translateZ(0); }
+}
+@keyframes merge-3 {
+  0% { transform: translate(0, 0) scale(1) translateZ(0); }
+  80% { transform: translate(calc(50vw - 30vw - 45px), calc(-50vh + 20vh + 45px)) scale(1) translateZ(0); }
+  100% { transform: translate(calc(50vw - 30vw - 45px), calc(-50vh + 20vh + 45px)) scale(0) translateZ(0); }
+}
+@keyframes merge-4 {
+  0% { transform: translate(0, 0) scale(1) translateZ(0); }
+  80% { transform: translate(calc(-50vw + 20vw + 45px), calc(-50vh + 25vh + 45px)) scale(1.3) translateZ(0); }
+  100% { transform: translate(calc(-50vw + 20vw + 45px), calc(-50vh + 25vh + 45px)) scale(0) translateZ(0); }
+}
+
+@keyframes mainSwell {
+  0% { transform: scale(1) translateZ(0); }
+  100% { transform: scale(1.8) translateZ(0); }
+}
+@keyframes mainExplode {
+  0% { transform: scale(1.8) translateZ(0); opacity: 1; }
+  30% { opacity: 1; }
+  100% { transform: scale(40) translateZ(0); opacity: 0; }
+}
+@keyframes fadeOutContainer {
+  to { opacity: 0; pointer-events: none; visibility: hidden; }
+}
+
+/* --- 主頁面佈局 --- */
+.wrapper {
+  max-width: var(--container-width);
+  margin: 0 auto;
+  padding: var(--space-2xl) var(--space-lg);
+  opacity: 0;
+  transform: translateY(var(--space-xl));
+  will-change: transform, opacity;
+  animation: showContent 1.2s cubic-bezier(0.215, 0.610, 0.355, 1) forwards 2.5s;
+}
+
+@keyframes showContent {
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* 自我介紹區塊 */
+.profile-section {
+  text-align: center;
+  padding: var(--space-3xl) 0 var(--space-2xl) 0;
+}
+
+.profile-section h1 {
+  font-size: var(--text-3xl);
+  letter-spacing: var(--tracking-wider);
+  margin-bottom: var(--space-md);
+  background: var(--text-gradient);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.profile-section p {
+  color: var(--text-muted);
+  font-size: var(--text-base);
+  max-width: 650px;
+  margin: 0 auto;
+  line-height: var(--leading-lg);
+}
+
+/* 作品展示格線 */
+.portfolio-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: var(--gap-lg);
+  margin-top: var(--space-2xl);
+}
+
+/* 作品卡片 */
+.portfolio-card {
+  background: var(--glass-bg-base);
+  border: 1px var(--border-glass-base) solid;
+  border-radius: var(--radius-xl);
+  padding: var(--space-lg);
+  transition: all var(--transition-slow) ease;
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+.portfolio-card:hover {
+  transform: translateY(-5px);
+  border-color: var(--border-accent-hover);
+  box-shadow: 0 15px 35px var(--shadow-dark), 0 0 25px var(--glow-accent-sm);
+}
+
+/* 1:1 圖片展示區域 */
+.image-viewer {
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  position: relative;
+  background: var(--glass-bg-dark);
+  margin-bottom: var(--space-lg);
+}
+
+.image-viewer img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  transition: opacity var(--transition-slow) ease, transform var(--transition-slow) ease, filter var(--transition-slow) ease;
+  transform: scale(1.02);
+  filter: blur(2px);
+}
+
+/* 預設顯示第一張（正面） */
+.image-viewer img.active {
+  opacity: 1;
+  transform: scale(1);
+  filter: blur(0);
+}
+
+/* 縮圖導覽列 */
+.thumb-bar {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--gap-sm);
+  margin-bottom: var(--space-lg);
+}
+
+.thumb-btn {
+  aspect-ratio: 1 / 1;
+  border-radius: var(--radius-sm);
+  overflow: hidden;
+  border: 2px solid transparent;
+  cursor: pointer;
+  transition: all var(--transition-fast) ease;
+  background: var(--glass-bg-light);
+  position: relative;
+}
+
+.thumb-btn img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.thumb-btn.active {
+  border-color: var(--accent-color);
+}
+
+/* 縮圖標籤（正面/側面/俯面）微型提示 */
+.thumb-btn::after {
+  content: attr(data-label);
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: rgba(0, 0, 0, 0.7); /* 此處保留以確保高對比度文字 */
+  color: var(--text-main);
+  font-size: var(--text-sm);
+  font-weight: bold;
+  text-align: center;
+  padding: 4px 0;
+  opacity: 0.8;
+}
+
+/* 卡片文字內容 */
+.card-content {
+  padding: 0 var(--space-xs);
+}
+
+.portfolio-card h3 {
+  font-size: var(--text-xl);
+  margin-bottom: var(--space-sm);
+  color: var(--text-main);
+  letter-spacing: var(--tracking-wide);
+}
+
+.portfolio-card p {
+  color: var(--text-muted);
+  font-size: var(--text-sm);
+  line-height: var(--leading-base);
+}
+
+.sticker-section {
+  margin-top: var(--space-4xl);
+  padding-top: var(--space-2xl);
+  border-top: 1px dashed var(--border-glass-light);
+}
+
+.sticker-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: var(--gap-md);
+}
+
+/* 註：Media Query 無法直接使用 CSS 變數，維持數值 */
+@media (min-width: 600px) {
+  .sticker-grid {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+/* 貼圖卡片：改為垂直排列 */
+.sticker-item {
+  background: var(--glass-bg-base);
+  border: 1px var(--border-glass-base) solid;
+  border-radius: var(--radius-lg);
+  padding: var(--space-md);
+  display: flex;
+  flex-direction: column;
+  transition: all var(--transition-base) cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+
+/* 確保圖片維持 1:1 容器 */
+.sticker-img-box {
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: var(--radius-md);
+}
+
+.sticker-img-box img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  transition: transform var(--transition-base) ease;
+}
+
+/* 貼圖底下的文字預留區 */
+.sticker-info {
+  text-align: center;
+  padding: 0 var(--space-xs);
+}
+
+.sticker-info h3 {
+  font-size: var(--text-lg);
+  color: var(--text-main);
+  font-weight: normal;
+  letter-spacing: var(--tracking-wide);
+}
+
+/* 懸浮效果 */
+.sticker-item:hover {
+  transform: translateY(-5px);
+  border-color: var(--border-accent-strong);
+  box-shadow: 0 10px 25px var(--shadow-dark-md), 0 0 20px var(--glow-accent-md);
+  background: var(--glass-bg-hover);
+}
+
+.sticker-item:hover .sticker-img-box img {
+  transform: scale(1.05);
+}
+
+.sticker-item:hover .sticker-info h3 {
+  color: var(--text-main);
+  text-shadow: 0 0 10px var(--glow-accent-lg);
+}
+/* =========================================
+   ✉️ 明信片作品區樣式
+   ========================================= */
+.postcard-section {
+  margin-top: var(--space-4xl);
+  padding-top: var(--space-2xl);
+  border-top: 1px dashed var(--border-glass-light);
+}
+
+.postcard-card {
+  background: var(--glass-bg-base);
+  border: 1px var(--border-glass-base) solid;
+  border-radius: var(--radius-xl);
+  padding: var(--space-lg);
+  max-width: 640px; /* 限制單張大圖卡片的最大寬度，避免在寬螢幕上過度拉伸 */
+  margin: 0 auto;
+  transition: all var(--transition-slow) ease;
+  display: flex;
+  flex-direction: column;
+}
+
+.postcard-card:hover {
+  transform: translateY(-5px);
+  border-color: var(--border-accent-hover);
+  box-shadow: 0 15px 35px var(--shadow-dark), 0 0 25px var(--glow-accent-sm);
+}
+
+/* 3:2 比例容器 */
+.postcard-img-box {
+  width: 100%;
+  aspect-ratio: 3 / 2;
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  background: var(--glass-bg-dark);
+  margin-bottom: var(--space-lg);
+}
+
+.postcard-img-box img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform var(--transition-slow) ease;
+}
+
+.postcard-card:hover .postcard-img-box img {
+  transform: scale(1.03); /* 微幅縮放 */
+}
+
+.postcard-content {
+  padding: 0 var(--space-xs);
+  text-align: center;
+}
+
+.postcard-content h3 {
+  font-size: var(--text-xl);
+  margin-bottom: var(--space-sm);
+  color: var(--text-main);
+  letter-spacing: var(--tracking-wide);
+}
+
+.postcard-content p {
+  color: var(--text-muted);
+  font-size: var(--text-sm);
+  line-height: var(--leading-base);
+}
+/* --- 自定義滾動條整體樣式 --- */
+::-webkit-scrollbar {
+  width: 10px;
+  background-color: rgba(3, 6, 17, 0.5); /* 軌道背景 */
+}
+
+::-webkit-scrollbar-track {
+  background: var(--glass-bg-base);
+  box-shadow: inset 1px 0 0 var(--border-glass-base); 
+}
+
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(to bottom, var(--accent-color), var(--color-purple)); 
+  border-radius: var(--radius-xl);
+  border: 2px solid var(--bg-color); 
+  transition: background var(--transition-base) ease;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(to bottom, var(--accent-color), var(--color-pink)); 
+  box-shadow: 0 0 10px var(--glow-accent-xl);
+}

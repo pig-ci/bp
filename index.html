@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>作品集</title>
+  <link rel="preload" href="Iansui.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="style.min.css">
+  <link rel="icon" href="favicon.webp" type="image/webp" sizes="32x32">
+  <link rel="preload" href="images/1_1.webp" as="image" fetchpriority="high">
+  <link rel="preload" href="images/2_1.webp" as="image" fetchpriority="high">
+  <link rel="preload" href="images/3_1.webp" as="image" fetchpriority="high">
+</head>
+<body class="no-scroll">
+
+  <svg style="position: absolute; width: 0; height: 0;">
+    <defs>
+      <filter id="smooth-gooey">
+        <feGaussianBlur in="SourceGraphic" stdDeviation="14" result="blur" />
+        <feColorMatrix in="blur" mode="matrix" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 32 -10" result="gooey" />
+        <feComposite in="SourceGraphic" in2="gooey" operator="atop" />
+      </filter>
+    </defs>
+  </svg>
+
+  <div class="intro-container">
+    <div class="drop main-drop"></div>
+    <div class="drop sub-drop drop-1"></div>
+    <div class="drop sub-drop drop-2"></div>
+    <div class="drop sub-drop drop-3"></div>
+    <div class="drop sub-drop drop-4"></div>
+  </div>
+
+  <div class="wrapper">
+    <header class="profile-section">
+      <h1>黑豬作品集</h1>
+      <p>世界本是渾沌，唯有切割出形狀，才能看見秩序。我執著於三角形的鋒利、立方體的穩固和球體的圓滑。這一系列作品，我想試圖挑戰視覺藝術的標準。</p>
+    </header>
+    <h2>香氛黏土作品</h2>
+    <main class="portfolio-grid">
+      <div class="portfolio-card" id="card-1">
+        <div class="image-viewer">
+          <img src="images/1_1.webp" alt="作品一正面" class="active">
+          <img src="images/1_2.webp" alt="作品一側面">
+          <img src="images/1_3.webp" alt="作品一俯面">
+        </div>
+        <div class="thumb-bar">
+          <div class="thumb-btn active" data-index="0" data-label="正面"><img src="images/1_1.webp" alt="縮圖"></div>
+          <div class="thumb-btn" data-index="1" data-label="側面"><img src="images/1_2.webp" alt="縮圖"></div>
+          <div class="thumb-btn" data-index="2" data-label="俯面"><img src="images/1_3.webp" alt="縮圖"></div>
+        </div>
+        <div class="card-content">
+          <h3>三角豬</h3>
+          <p>禁止擁抱，擁有四個完美等邊三角形的稜角生物。雖然外表銳利，但內心很柔軟。</p>
+        </div>
+      </div>
+
+      <div class="portfolio-card" id="card-2">
+        <div class="image-viewer">
+          <img src="images/2_1.webp" alt="作品二正面" class="active">
+          <img src="images/2_2.webp" alt="作品二側面">
+          <img src="images/2_3.webp" alt="作品二俯面">
+        </div>
+        <div class="thumb-bar">
+          <div class="thumb-btn active" data-index="0" data-label="正面"><img src="images/2_1.webp" alt="縮圖"></div>
+          <div class="thumb-btn" data-index="1" data-label="側面"><img src="images/2_2.webp" alt="縮圖"></div>
+          <div class="thumb-btn" data-index="2" data-label="俯面"><img src="images/2_3.webp" alt="縮圖"></div>
+        </div>
+        <div class="card-content">
+          <h3>圓豬</h3>
+          <p>毫無稜角、經過打磨而成的完美球體。因為表面摩擦力趨近於零，這隻豬的一生都在「滾動」中度過。牠沒有明確的方向感，只要地面有 1° 的傾斜，牠就會無止盡的滾動。因為滾動速度太快，導致牠的常常處於暈眩的狀態。</p>
+        </div>
+      </div>
+
+      <div class="portfolio-card" id="card-3">
+        <div class="image-viewer">
+          <img src="images/3_1.webp" alt="作品三正面" class="active">
+          <img src="images/3_2.webp" alt="作品三側面">
+          <img src="images/3_3.webp" alt="作品三俯面">
+        </div>
+        <div class="thumb-bar">
+          <div class="thumb-btn active" data-index="0" data-label="正面"><img src="images/3_1.webp" alt="縮圖"></div>
+          <div class="thumb-btn" data-index="1" data-label="側面"><img src="images/3_2.webp" alt="縮圖"></div>
+          <div class="thumb-btn" data-index="2" data-label="俯面"><img src="images/3_3.webp" alt="縮圖"></div>
+        </div>
+        <div class="card-content">
+          <h3>方豬</h3>
+          <p>由六個正方形構成的剛硬生物，性格極度固執。牠擁有三隻豬中最完美的穩定度，靜止時就彷彿與地板融為一體，推也推不動。身為空間收納強迫症的最愛，如果有很多隻方豬，牠們會自動堆疊成一根黑色的塔。</p>
+        </div>
+      </div>
+
+    </main>
+<section class="sticker-section">
+      <h2>貼圖作品</h2>
+      <div class="sticker-grid">
+        
+        <div class="sticker-item">
+          <div class="sticker-img-box"><img src="images/icon_1.webp" alt="貼圖 1" loading="lazy"></div>
+          <div class="sticker-info"><h3>只要我肯努力就沒有任何事是我搞不砸的</h3></div>
+        </div>
+
+        <div class="sticker-item">
+          <div class="sticker-img-box"><img src="images/icon_2.webp" alt="貼圖 2" loading="lazy"></div>
+          <div class="sticker-info"><h3>這件事交給我你就放心吧反正我也不會做</h3></div>
+        </div>
+
+        <div class="sticker-item">
+          <div class="sticker-img-box"><img src="images/icon_3.webp" alt="貼圖 3" loading="lazy"></div>
+          <div class="sticker-info"><h3>你知道嗎每過60秒就等於一分鐘</h3></div>
+        </div>
+
+        <div class="sticker-item">
+          <div class="sticker-img-box"><img src="images/icon_4.webp" alt="貼圖 4" loading="lazy"></div>
+          <div class="sticker-info"><h3>你說的很有道理但我不想聽</h3></div>
+        </div>
+
+        <div class="sticker-item">
+          <div class="sticker-img-box"><img src="images/icon_5.webp" alt="貼圖 5" loading="lazy"></div>
+          <div class="sticker-info"><h3>我並不是一無所有我還有病</h3></div>
+        </div>
+
+        <div class="sticker-item">
+          <div class="sticker-img-box"><img src="images/icon_6.webp" alt="貼圖 6" loading="lazy"></div>
+          <div class="sticker-info"><h3>每個人都有權力表達自己的愚蠢</h3></div>
+        </div>
+
+        <div class="sticker-item">
+          <div class="sticker-img-box"><img src="images/icon_7.webp" alt="貼圖 7" loading="lazy"></div>
+          <div class="sticker-info"><h3>人如果不逼自己一把都不知道自己可以這麼懶</h3></div>
+        </div>
+
+        <div class="sticker-item">
+          <div class="sticker-img-box"><img src="images/icon_8.webp" alt="貼圖 8" loading="lazy"></div>
+          <div class="sticker-info"><h3>錢能解決很多問題問題是我沒有錢</h3></div>
+        </div>
+
+      </div>
+    </section>
+    <!-- 明信片作品區 -->
+    <section class="postcard-section">
+      <h2>明信片作品</h2>
+      <div class="postcard-card">
+        <div class="postcard-img-box">
+          <img src="images/postcard.webp" alt="明信片作品" loading="lazy">
+        </div>
+        <div class="postcard-content">
+          <h3>實人明信片</h3>
+          <p>融合了整個選修的人創作的角色和實人標誌的明信片設計。</p>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
